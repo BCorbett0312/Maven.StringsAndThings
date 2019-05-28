@@ -1,4 +1,6 @@
 package io.zipcoder;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 
 /**
@@ -15,7 +17,11 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        Matcher m = Pattern.compile("[yz]\\b").matcher(input);
+        int count = 0;
+        while (m.find())
+            count++;
+        return count;
     }
 
     /**
@@ -28,8 +34,16 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String updatedStr = "";
+
+        updatedStr = base.replace(remove, "");
+
+
+        return updatedStr;
     }
+
+
+
 
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
@@ -40,8 +54,36 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        Matcher m = Pattern.compile("is").matcher(input);
+        Matcher x = Pattern.compile("not").matcher(input);
+        int countIs = 0;
+        int countNot = 0;
+        boolean count;
+        while (m.find())
+            countIs++;
+
+        while (x.find())
+            countNot++;
+
+        if(countIs == countNot) {
+            count = true;
+
+        }
+        else {
+            count = false;
+        }
+
+
+        return count;
+
+
+
+
+
     }
+
+
+
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -51,7 +93,21 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        Matcher m = Pattern.compile("[^g]g[^g]").matcher(input);
+        boolean count;
+        int counter = 0;
+        while (m.find()){
+            counter++;
+        }
+
+        if (counter == 1){
+            count = false;
+            }
+        else {
+            count = true;
+        }
+
+        return count;
     }
 
 
@@ -63,6 +119,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int counter = 0;
+
+        for (int i = 0; i < input.length()-2; i++){
+            if (input.charAt(i)==input.charAt(i+1) && input.charAt(i+1) == input.charAt(i+2)){
+            counter++;
+            }
+        }
+
+
+        return counter;
     }
 }
